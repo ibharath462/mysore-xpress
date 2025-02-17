@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React, { useState, useRef } from 'react';
-import { X, Maximize2, Minimize2, Video } from 'lucide-react';
+import React, { useState, useRef, useCallback } from "react";
+import { X, Maximize2, Minimize2, Video } from "lucide-react";
 
 const PIPVideoPlayer = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,49 +11,81 @@ const PIPVideoPlayer = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  // Handle drag start
-  const handleMouseDown = (e) => {
+  // Handle drag start - now supports both mouse and touch events
+  const handleDragStart = useCallback((e) => {
     if (!isMinimized) return;
     setIsDragging(true);
+    
+    // Handle both mouse and touch events
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    
     setDragStart({
-      x: e.clientX - position.x,
-      y: e.clientY - position.y
+      x: clientX - position.x,
+      y: clientY - position.y,
     });
-  };
+  }, [isMinimized, position]);
 
-  // Handle drag
-  const handleMouseMove = (e) => {
+  // Handle drag - now supports both mouse and touch events
+  const handleDrag = useCallback((e) => {
     if (!isDragging) return;
-    
-    const newX = e.clientX - dragStart.x;
-    const newY = e.clientY - dragStart.y;
-    
+
+    // Handle both mouse and touch events
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+    const newX = clientX - dragStart.x;
+    const newY = clientY - dragStart.y;
+
     // Keep within viewport bounds
     const maxX = window.innerWidth - (isMinimized ? 320 : 640);
     const maxY = window.innerHeight - (isMinimized ? 180 : 360);
-    
+
     setPosition({
       x: Math.min(Math.max(0, newX), maxX),
-      y: Math.min(Math.max(0, newY), maxY)
+      y: Math.min(Math.max(0, newY), maxY),
     });
-  };
+    
+    // Prevent default only for mouse events to maintain smooth touch scrolling
+    if (!e.touches) {
+      e.preventDefault();
+    }
+  }, [isDragging, dragStart, isMinimized]);
 
   // Handle drag end
-  const handleMouseUp = () => {
+  const handleDragEnd = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
 
-  // Add event listeners for drag
+  // Add event listeners for drag with passive touch events
   React.useEffect(() => {
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging, dragStart]);
+    const element = dragRef.current;
+    if (!element) return;
 
-  const videoSize = isMinimized ? 'w-80 h-45' : 'w-full md:w-[640px] h-[360px]';
+    // Mouse events
+    element.addEventListener("mousedown", handleDragStart);
+    document.addEventListener("mousemove", handleDrag);
+    document.addEventListener("mouseup", handleDragEnd);
+
+    // Touch events - with passive option
+    element.addEventListener("touchstart", handleDragStart, { passive: true });
+    document.addEventListener("touchmove", handleDrag, { passive: true });
+    document.addEventListener("touchend", handleDragEnd, { passive: true });
+
+    return () => {
+      // Cleanup mouse events
+      element.removeEventListener("mousedown", handleDragStart);
+      document.removeEventListener("mousemove", handleDrag);
+      document.removeEventListener("mouseup", handleDragEnd);
+
+      // Cleanup touch events
+      element.removeEventListener("touchstart", handleDragStart);
+      document.removeEventListener("touchmove", handleDrag);
+      document.removeEventListener("touchend", handleDragEnd);
+    };
+  }, [handleDragStart, handleDrag, handleDragEnd]);
+
+  const videoSize = isMinimized ? "w-80 h-45" : "w-full md:w-[640px] h-[360px]";
 
   return (
     <>
@@ -69,26 +101,23 @@ const PIPVideoPlayer = () => {
 
       {/* Video Player */}
       {isVisible && (
-        <div 
+        <div
           ref={dragRef}
           className={`fixed z-50 transition-all duration-300 ${
-            isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            isDragging ? "cursor-grabbing" : "cursor-grab"
           }`}
           style={{
             transform: `translate(${position.x}px, ${position.y}px)`,
           }}
         >
-          <div 
+          <div
             className={`bg-black rounded-lg shadow-2xl overflow-hidden
-              ${isMinimized ? 'w-80' : 'w-full md:w-[640px]'}
+              ${isMinimized ? "w-80" : "w-full md:w-[640px]"}
               border border-red-600
             `}
           >
             {/* Control Bar */}
-            <div 
-              className="bg-black px-4 py-2 flex justify-between items-center cursor-grab"
-              onMouseDown={handleMouseDown}
-            >
+            <div className="bg-black px-4 py-2 flex justify-between items-center">
               <h3 className="text-red-600 font-synth text-sm truncate">
                 mysoreXPress - Official Video
               </h3>
