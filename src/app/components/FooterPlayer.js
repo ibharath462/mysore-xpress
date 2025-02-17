@@ -64,14 +64,14 @@ const FooterWithPlayer = () => {
       {/* Sticky Music Player */}
       <div className="fixed bottom-0 left-0 w-full bg-emerald-950/95 backdrop-blur-md border-t 
         border-lime-400/20 shadow-lg z-40">
-        <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-3">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-0 sm:justify-between">
             {/* Song Info */}
             <div className="flex items-center space-x-4">
               <img 
                 src="/hero.jpg" 
                 alt="Current track" 
-                className="w-12 h-12 rounded"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded"
               />
               <div>
                 <h4 className="text-lime-400 font-synth text-sm">Now Playing</h4>
@@ -80,10 +80,10 @@ const FooterWithPlayer = () => {
             </div>
 
             {/* Player Controls */}
-            <div className="flex flex-col items-center flex-1 max-w-2xl px-4">
+            <div className="flex flex-col items-center w-full sm:flex-1 sm:max-w-2xl sm:px-4">
               <div className="flex items-center space-x-4 mb-1">
                 <button className="text-emerald-200 hover:text-lime-400 transition-colors">
-                  <SkipBack className="w-5 h-5" />
+                  <SkipBack className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button 
                   className="bg-lime-400 hover:bg-lime-500 text-emerald-950 rounded-full p-2 
@@ -91,18 +91,18 @@ const FooterWithPlayer = () => {
                   onClick={togglePlay}
                 >
                   {isPlaying ? (
-                    <Pause className="w-6 h-6" />
+                    <Pause className="w-5 h-5 sm:w-6 sm:h-6" />
                   ) : (
-                    <Play className="w-6 h-6" />
+                    <Play className="w-5 h-5 sm:w-6 sm:h-6" />
                   )}
                 </button>
                 <button className="text-emerald-200 hover:text-lime-400 transition-colors">
-                  <SkipForward className="w-5 h-5" />
+                  <SkipForward className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
               
-              <div className="w-full flex items-center space-x-3 text-xs text-emerald-200">
-                <span>{formatTime(currentTime)}</span>
+              <div className="w-full flex items-center space-x-2 sm:space-x-3 text-xs text-emerald-200">
+                <span className="min-w-[40px] text-center">{formatTime(currentTime)}</span>
                 <input
                   type="range"
                   min="0"
@@ -111,20 +111,20 @@ const FooterWithPlayer = () => {
                   onChange={handleSeek}
                   className="flex-1 accent-lime-400"
                 />
-                <span>{formatTime(duration)}</span>
+                <span className="min-w-[40px] text-center">{formatTime(duration)}</span>
               </div>
             </div>
 
             {/* Volume Control */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <button 
                 className="text-emerald-200 hover:text-lime-400 transition-colors"
                 onClick={toggleMute}
               >
                 {isMuted ? (
-                  <VolumeX className="w-5 h-5" />
+                  <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" />
                 ) : (
-                  <Volume2 className="w-5 h-5" />
+                  <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
                 )}
               </button>
               <input
@@ -134,7 +134,7 @@ const FooterWithPlayer = () => {
                 step="0.01"
                 value={volume}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
-                className="w-20 accent-lime-400"
+                className="w-16 sm:w-20 accent-lime-400"
               />
             </div>
           </div>
@@ -150,35 +150,35 @@ const FooterWithPlayer = () => {
       </div>
 
       {/* Traditional Footer */}
-      <footer className="bg-emerald-950 text-emerald-200 pt-16 pb-24">
+      <footer className="bg-emerald-950 text-emerald-200 pt-12 sm:pt-16 pb-20 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Band Info */}
           <div className="md:col-span-2">
-            <h3 className="text-2xl font-metal text-lime-400 mb-4">mysoreXPress</h3>
-            <p className="mb-4">
+            <h3 className="text-xl sm:text-2xl font-metal text-lime-400 mb-4">mysoreXPress</h3>
+            <p className="mb-4 text-sm sm:text-base">
               Blending the ancient rhythms of Carnatic music with the power of modern metal,
               creating a unique sound that bridges cultures and generations.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Instagram className="w-6 h-6" />
+                <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Twitter className="w-6 h-6" />
+                <Twitter className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Facebook className="w-6 h-6" />
+                <Facebook className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
               <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Youtube className="w-6 h-6" />
+                <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-synth text-lime-400 mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <h4 className="text-base sm:text-lg font-synth text-lime-400 mb-3 sm:mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm sm:text-base">
               <li><a href="#" className="hover:text-lime-400 transition-colors">Tour Dates</a></li>
               <li><a href="#" className="hover:text-lime-400 transition-colors">Merch Store</a></li>
               <li><a href="#" className="hover:text-lime-400 transition-colors">Media Kit</a></li>
@@ -188,16 +188,16 @@ const FooterWithPlayer = () => {
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-synth text-lime-400 mb-4">Stay Updated</h4>
-            <p className="mb-4">Subscribe to our newsletter for tour updates and exclusive content.</p>
+            <h4 className="text-base sm:text-lg font-synth text-lime-400 mb-3 sm:mb-4">Stay Updated</h4>
+            <p className="mb-4 text-sm sm:text-base">Subscribe to our newsletter for tour updates and exclusive content.</p>
             <div className="flex">
               <input
                 type="email"
                 placeholder="Your email"
-                className="bg-emerald-900 px-4 py-2 rounded-l focus:outline-none focus:ring-1 
-                  focus:ring-lime-400 flex-1"
+                className="bg-emerald-900 px-3 sm:px-4 py-2 rounded-l focus:outline-none focus:ring-1 
+                  focus:ring-lime-400 flex-1 text-sm sm:text-base"
               />
-              <button className="bg-lime-400 hover:bg-lime-500 text-emerald-950 px-4 py-2 
+              <button className="bg-lime-400 hover:bg-lime-500 text-emerald-950 px-3 sm:px-4 py-2 
                 rounded-r font-bold transition-colors flex items-center">
                 <Mail className="w-4 h-4" />
               </button>
@@ -206,8 +206,8 @@ const FooterWithPlayer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="max-w-7xl mx-auto px-4 pt-8 mt-8 border-t border-emerald-900">
-          <p className="text-center text-sm">
+        <div className="max-w-7xl mx-auto px-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-emerald-900">
+          <p className="text-center text-xs sm:text-sm">
             © 2025 mysoreXPress. All rights reserved. Made with 🎸 in Mysore, India
           </p>
         </div>

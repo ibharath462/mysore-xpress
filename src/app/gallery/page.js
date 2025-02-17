@@ -165,10 +165,6 @@ const FunkyGallery = () => {
           <Disc className="w-12 h-12 text-red-600 absolute -right-16 top-1/2 -translate-y-1/2 animate-spin-slow" />
         </div>
 
-        {/* Keyboard Navigation Instructions */}
-        <div className="text-red-400 text-center mb-8 font-synth text-sm">
-          <p>Use arrow keys to navigate • Space/Enter to select • Escape to close</p>
-        </div>
 
         {/* Gallery Grid with Compressed Images */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-max" 
