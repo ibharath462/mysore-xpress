@@ -78,7 +78,7 @@ const HomePage = () => {
       {/* Hero Section with Audio Visualizer */}
       <div ref={heroRef} className="relative h-screen flex items-center justify-center">
         <img 
-          src="/hero.jpg" 
+          src="/images/mxp3.jpg" 
           alt="Band performing" 
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
@@ -180,7 +180,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <FooterPlayer />
+      {/* <FooterPlayer /> */}
       <Floater />
     </div>
   );
