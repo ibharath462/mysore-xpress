@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   Play, Pause, SkipBack, SkipForward, Volume2, VolumeX,
-  Instagram, Twitter, Facebook, Youtube, Mail
+  Instagram, Twitter, Facebook, Youtube, Mail, ArrowRight
 } from 'lucide-react';
 
 const FooterWithPlayer = () => {
@@ -62,8 +62,8 @@ const FooterWithPlayer = () => {
   return (
     <>
       {/* Sticky Music Player */}
-      <div className="fixed bottom-0 left-0 w-full bg-emerald-950/95 backdrop-blur-md border-t 
-        border-lime-400/20 shadow-lg z-40">
+      <div className="fixed bottom-0 left-0 w-full bg-black/95 backdrop-blur-md border-t 
+        border-[#ff4a4a]/20 shadow-lg z-40">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 py-2 sm:py-3">
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-0 sm:justify-between">
             {/* Song Info */}
@@ -74,19 +74,19 @@ const FooterWithPlayer = () => {
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded"
               />
               <div>
-                <h4 className="text-lime-400 font-synth text-sm">Now Playing</h4>
-                <p className="text-emerald-200 text-xs">Hero Track</p>
+                <h4 className="text-[#ff4a4a] font-origin text-sm uppercase tracking-wide">Now Playing</h4>
+                <p className="text-gray-400 text-xs">Hero Track</p>
               </div>
             </div>
 
             {/* Player Controls */}
             <div className="flex flex-col items-center w-full sm:flex-1 sm:max-w-2xl sm:px-4">
               <div className="flex items-center space-x-4 mb-1">
-                <button className="text-emerald-200 hover:text-lime-400 transition-colors">
+                <button className="text-gray-400 hover:text-[#ff4a4a] transition-colors">
                   <SkipBack className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button 
-                  className="bg-lime-400 hover:bg-lime-500 text-emerald-950 rounded-full p-2 
+                  className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white rounded-full p-2 
                     transition-colors"
                   onClick={togglePlay}
                 >
@@ -96,12 +96,12 @@ const FooterWithPlayer = () => {
                     <Play className="w-5 h-5 sm:w-6 sm:h-6" />
                   )}
                 </button>
-                <button className="text-emerald-200 hover:text-lime-400 transition-colors">
+                <button className="text-gray-400 hover:text-[#ff4a4a] transition-colors">
                   <SkipForward className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
               
-              <div className="w-full flex items-center space-x-2 sm:space-x-3 text-xs text-emerald-200">
+              <div className="w-full flex items-center space-x-2 sm:space-x-3 text-xs text-gray-400">
                 <span className="min-w-[40px] text-center">{formatTime(currentTime)}</span>
                 <input
                   type="range"
@@ -109,7 +109,7 @@ const FooterWithPlayer = () => {
                   max={duration || 0}
                   value={currentTime}
                   onChange={handleSeek}
-                  className="flex-1 accent-lime-400"
+                  className="flex-1 accent-[#ff4a4a]"
                 />
                 <span className="min-w-[40px] text-center">{formatTime(duration)}</span>
               </div>
@@ -118,7 +118,7 @@ const FooterWithPlayer = () => {
             {/* Volume Control */}
             <div className="flex items-center space-x-2 sm:space-x-3">
               <button 
-                className="text-emerald-200 hover:text-lime-400 transition-colors"
+                className="text-gray-400 hover:text-[#ff4a4a] transition-colors"
                 onClick={toggleMute}
               >
                 {isMuted ? (
@@ -134,7 +134,7 @@ const FooterWithPlayer = () => {
                 step="0.01"
                 value={volume}
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
-                className="w-16 sm:w-20 accent-lime-400"
+                className="w-16 sm:w-20 accent-[#ff4a4a]"
               />
             </div>
           </div>
@@ -150,65 +150,64 @@ const FooterWithPlayer = () => {
       </div>
 
       {/* Traditional Footer */}
-      <footer className="bg-emerald-950 text-emerald-200 pt-12 sm:pt-16 pb-20 sm:pb-24">
+      <footer className="bg-black text-gray-400 pt-12 sm:pt-16 pb-20 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Band Info */}
           <div className="md:col-span-2">
-            <h3 className="text-xl sm:text-2xl font-metal text-lime-400 mb-4">mysoreXPress</h3>
+            <h3 className="text-xl sm:text-2xl font-origin text-[#ff4a4a] mb-4 uppercase tracking-wide">mysoreXPress</h3>
             <p className="mb-4 text-sm sm:text-base">
               Blending the ancient rhythms of Carnatic music with the power of modern metal,
               creating a unique sound that bridges cultures and generations.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-[#ff4a4a] transition-colors">
                 <Instagram className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
-              <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Twitter className="w-5 h-5 sm:w-6 sm:h-6" />
-              </a>
-              <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
-                <Facebook className="w-5 h-5 sm:w-6 sm:h-6" />
-              </a>
-              <a href="#" className="text-emerald-200 hover:text-lime-400 transition-colors">
+              <a href="#" className="text-gray-400 hover:text-[#ff4a4a] transition-colors">
                 <Youtube className="w-5 h-5 sm:w-6 sm:h-6" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-[#ff4a4a] transition-colors">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-base sm:text-lg font-synth text-lime-400 mb-3 sm:mb-4">Quick Links</h4>
+            <h4 className="text-base sm:text-lg font-origin text-[#ff4a4a] mb-3 sm:mb-4 uppercase tracking-wide">Quick Links</h4>
             <ul className="space-y-2 text-sm sm:text-base">
-              <li><a href="#" className="hover:text-lime-400 transition-colors">Tour Dates</a></li>
-              <li><a href="#" className="hover:text-lime-400 transition-colors">Merch Store</a></li>
-              <li><a href="#" className="hover:text-lime-400 transition-colors">Media Kit</a></li>
-              <li><a href="#" className="hover:text-lime-400 transition-colors">Contact</a></li>
+              <li><a href="#" className="hover:text-[#ff4a4a] transition-colors">Tour Dates</a></li>
+              <li><a href="#" className="hover:text-[#ff4a4a] transition-colors">Merch Store</a></li>
+              <li><a href="#" className="hover:text-[#ff4a4a] transition-colors">Media Kit</a></li>
+              <li><a href="#" className="hover:text-[#ff4a4a] transition-colors">Contact</a></li>
             </ul>
           </div>
 
           {/* Newsletter */}
           <div>
-            <h4 className="text-base sm:text-lg font-synth text-lime-400 mb-3 sm:mb-4">Stay Updated</h4>
+            <h4 className="text-base sm:text-lg font-origin text-[#ff4a4a] mb-3 sm:mb-4 uppercase tracking-wide">Stay Updated</h4>
             <p className="mb-4 text-sm sm:text-base">Subscribe to our newsletter for tour updates and exclusive content.</p>
             <div className="flex">
               <input
                 type="email"
                 placeholder="Your email"
-                className="bg-emerald-900 px-3 sm:px-4 py-2 rounded-l focus:outline-none focus:ring-1 
-                  focus:ring-lime-400 flex-1 text-sm sm:text-base"
+                className="bg-gray-900 px-3 sm:px-4 py-2 rounded-l focus:outline-none focus:ring-1 
+                  focus:ring-[#ff4a4a] flex-1 text-sm sm:text-base"
               />
-              <button className="bg-lime-400 hover:bg-lime-500 text-emerald-950 px-3 sm:px-4 py-2 
-                rounded-r font-bold transition-colors flex items-center">
-                <Mail className="w-4 h-4" />
+              <button className="group bg-transparent hover:bg-[#ff4a4a]/10 text-[#ff4a4a] px-4 py-2 
+                rounded-r transition-all border border-[#ff4a4a] font-origin uppercase tracking-wide
+                flex items-center space-x-2">
+                <span>Send</span>
+                <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="max-w-7xl mx-auto px-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-emerald-900">
+        <div className="max-w-7xl mx-auto px-4 pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-gray-800">
           <p className="text-center text-xs sm:text-sm">
-            © 2025 mysoreXPress. All rights reserved. Made with 🎸 in Mysore, India
+            © 2025 mysoreXPress. All rights reserved. Made with 🤘 in Mysore, India
           </p>
         </div>
       </footer>

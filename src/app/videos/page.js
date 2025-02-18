@@ -155,10 +155,10 @@ const VideosPage = () => {
         >
           <div className="text-center">
             <Disc className="w-16 h-16 mx-auto mb-4 text-lime-500 animate-spin-slow" />
-            <h1 className="text-5xl md:text-7xl font-metal text-lime-500 mb-4">
+            <h1 className="text-5xl md:text-7xl font-origin text-lime-500 mb-4">
               Official Videos
             </h1>
-            <p className="text-xl font-synth text-emerald-300 max-w-2xl mx-auto px-4">
+            <p className="text-xl font-origin text-emerald-300 max-w-2xl mx-auto px-4">
               Experience the fusion of Carnatic and Metal
             </p>
           </div>
@@ -196,7 +196,7 @@ const VideosPage = () => {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="text-xl font-synth text-lime-400 mb-2">
+                    <h3 className="text-xl font-origin text-lime-400 mb-2">
                       {video.title}
                     </h3>
                     <p className="text-emerald-300 text-sm">
@@ -209,7 +209,7 @@ const VideosPage = () => {
                         onClick={() => handleShare(video.title)}
                       >
                         <Share2 className="w-4 h-4" />
-                        <span className="text-sm font-synth">Share</span>
+                        <span className="text-sm font-origin">Share</span>
                       </button>
                       <Play
                         className="w-5 h-5 text-lime-500 opacity-0 group-hover:opacity-100 

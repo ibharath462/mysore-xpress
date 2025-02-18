@@ -49,11 +49,11 @@ const AboutPage = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-emerald-950 text-white">
+      <div className="min-h-screen bg-black text-white">
         
         {/* Hero Section */}
         <div className="relative h-96 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-emerald-950 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black z-10" />
           <img
             src="/images/hero.jpg"
             alt="Band performing"
@@ -61,8 +61,8 @@ const AboutPage = () => {
           />
           <div className="absolute inset-0 flex items-center justify-center z-20">
             <div className="text-center">
-              <Disc className="w-16 h-16 mx-auto mb-4 text-lime-500 animate-spin-slow" />
-              <h1 className="text-5xl md:text-7xl font-metal text-lime-500 mb-4">
+              <Disc className="w-16 h-16 mx-auto mb-4 text-[#ff4a4a] animate-spin-slow" />
+              <h1 className="text-5xl md:text-7xl font-origin text-[#ff4a4a] mb-4">
                 About Us
               </h1>
             </div>
@@ -75,7 +75,7 @@ const AboutPage = () => {
             {/* Image Section */}
             <div ref={imageRef} className="relative group">
               <div
-                className="absolute inset-0 bg-lime-500/20 transform group-hover:scale-105 
+                className="absolute inset-0 bg-[#ff4a4a]/20 transform group-hover:scale-105 
               transition-transform duration-500 rounded-lg"
               ></div>
               <img
@@ -88,11 +88,11 @@ const AboutPage = () => {
             {/* Text Content */}
             <div ref={textRef} className="space-y-6">
               <div className="flex items-center space-x-4 mb-6">
-                <Music className="w-8 h-8 text-lime-500" />
-                <h2 className="text-3xl font-metal text-lime-500">The Band</h2>
+                <Music className="w-8 h-8 text-[#ff4a4a]" />
+                <h2 className="text-3xl font-origin text-[#ff4a4a]">The Band</h2>
               </div>
 
-              <div className="space-y-4 font-synth text-emerald-100">
+              <div className="space-y-4 font-origin text-gray-300">
                 <p className="leading-relaxed">
                   Mysore Xpress is a modern fusion pop rock act hailing from
                   heritage city Mysore, South India. MX blends rich traditional
@@ -120,8 +120,8 @@ const AboutPage = () => {
               <div className="pt-6">
                 <a href="/music">
                   <button
-                    className="bg-lime-500 hover:bg-lime-600 text-emerald-950 px-8 py-3 rounded-full 
-                transform hover:scale-105 transition-transform duration-200 font-bold font-synth
+                    className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white px-8 py-3 rounded-full 
+                transform hover:scale-105 transition-transform duration-200 font-bold font-origin
                 flex items-center space-x-2"
                   >
                     <Disc className="w-5 h-5" />
@@ -134,17 +134,17 @@ const AboutPage = () => {
         </div>
 
         {/* Background Musical Notes */}
-        <div className="fixed inset-0 pointer-events-none opacity-5 z-0">
-          <div className="absolute top-1/4 left-1/4 text-8xl text-lime-500/5 transform -rotate-12">
+        <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
+          <div className="absolute top-1/4 left-1/4 text-9xl text-[#ff4a4a]/20 transform -rotate-12">
             ♪
           </div>
-          <div className="absolute top-1/2 right-1/3 text-6xl text-lime-500/5 transform rotate-12">
+          <div className="absolute top-1/2 right-1/3 text-8xl text-[#ff4a4a]/20 transform rotate-12">
             ♫
           </div>
-          <div className="absolute bottom-1/4 left-1/3 text-7xl text-lime-500/5 transform -rotate-45">
+          <div className="absolute bottom-1/4 left-1/3 text-8xl text-[#ff4a4a]/20 transform -rotate-45">
             ♩
           </div>
-          <div className="absolute top-3/4 right-1/4 text-5xl text-lime-500/5 transform rotate-45">
+          <div className="absolute top-3/4 right-1/4 text-7xl text-[#ff4a4a]/20 transform rotate-45">
             ♬
           </div>
         </div>
@@ -155,10 +155,10 @@ const AboutPage = () => {
 
         {/* Animated Background Notes */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 text-8xl text-lime-500/5 animate-pulse transform -rotate-12">♪</div>
-          <div className="absolute bottom-1/3 right-1/4 text-9xl text-lime-500/5 animate-pulse delay-300 transform rotate-12">♫</div>
-          <div className="absolute bottom-1/4 left-1/3 text-7xl text-lime-500/5 animate-pulse delay-150 transform -rotate-45">♩</div>
-          <div className="absolute top-1/3 right-1/3 text-6xl text-lime-500/5 animate-pulse delay-500 transform rotate-45">♬</div>
+          <div className="absolute top-1/4 left-1/4 text-9xl text-[#ff4a4a]/20 animate-pulse transform -rotate-12">♪</div>
+          <div className="absolute bottom-1/3 right-1/4 text-10xl text-[#ff4a4a]/20 animate-pulse delay-300 transform rotate-12">♫</div>
+          <div className="absolute bottom-1/4 left-1/3 text-8xl text-[#ff4a4a]/20 animate-pulse delay-150 transform -rotate-45">♩</div>
+          <div className="absolute top-1/3 right-1/3 text-7xl text-[#ff4a4a]/20 animate-pulse delay-500 transform rotate-45">♬</div>
         </div>
         
       </div>

@@ -156,7 +156,7 @@ const FunkyGallery = () => {
         {/* Title section remains the same */}
         <div className="flex items-center justify-center mb-12 relative group">
           <Disc className="w-12 h-12 text-red-600 absolute -left-16 top-1/2 -translate-y-1/2 animate-spin-slow" />
-          <h2 className="text-5xl md:text-7xl font-metal text-red-600 text-center relative
+          <h2 className="text-5xl md:text-7xl font-origin text-red-600 text-center relative
             animate-pulse hover:scale-105 transition-transform duration-300">
             Gallery
             <div className="absolute -inset-1 bg-red-600/20 blur-lg group-hover:bg-red-600/30 

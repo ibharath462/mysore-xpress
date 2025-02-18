@@ -1,13 +1,13 @@
 "use client"
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Music, Play, ArrowRight } from 'lucide-react';
+import { Music, ArrowRight, Play, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 import Header from "./components/mxHeader";
-import FooterPlayer from "./components/FooterPlayer";
+import Footer from "./components/FooterPlayer";
 import Floater from "./components/Floater";
 import VideoPlayer from "./components/VideoPlayer";
 
@@ -32,95 +32,103 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="bg-emerald-950 text-lime-50">
+    <div className="bg-black text-white">
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-[80vh]">
-        <img 
-          src="/images/mxp3.jpg"
-          alt="Band performing"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/30 via-emerald-950/50 to-emerald-950"></div>
-      </section>
-
-      {/* Introduction Section */}
-      <section className="py-20 animate-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-metal text-lime-300 mb-6">Modern Fusion Rock</h2>
-            <p className="text-lg font-synth text-lime-100 leading-relaxed">
-              Mysore Xpress is a modern fusion pop rock act hailing from the heritage city 
-              of Mysore, South India. Our sound breaks boundaries by blending rich traditional 
-              elements with contemporary rock energy.
+      <section className="relative">
+        {/* Hero Image */}
+        <div className="w-full md:h-[70vh] h-[50vh]">
+          <img 
+            src="/images/mxp3.jpg"
+            alt="Mysore Xpress performing"
+            className="w-full h-full object-cover opacity-70"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
+        </div>
+        
+        {/* Hero Content */}
+        <div className="container mx-auto px-4 py-12 md:py-20">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-6xl font-origin text-[#ff4a4a] mb-6 leading-tight">
+              Where Tradition Meets Modern Rock
+            </h1>
+            <p className="text-lg md:text-xl font-origin text-gray-300 mb-8 leading-relaxed">
+              Experience the fusion of Carnatic rhythms and contemporary rock energy
             </p>
+            <Link href="/music">
+              <button className="bg-black hover:bg-gray-900 text-[#ff4a4a] px-6 py-3 
+                rounded-full transform hover:scale-105 transition-all duration-200 
+                font-bold font-origin flex items-center space-x-2 border border-[#ff4a4a]">
+                <Play className="w-5 h-5" />
+                <span>Listen Now</span>
+              </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Sound Journey Section */}
-      <section className="py-20 bg-emerald-900/30 animate-section">
+      {/* About Section */}
+      <section className="py-24 animate-section">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="relative group">
+              <div className="absolute inset-0 bg-[#ff4a4a]/20 transform group-hover:scale-105 
+                transition-transform duration-500 rounded-lg"></div>
               <img 
                 src="/images/mxp15.jpg"
                 alt="Band members"
-                className="rounded-lg shadow-2xl"
+                className="relative z-10 rounded-lg shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/50 to-transparent rounded-lg"></div>
             </div>
             <div className="space-y-6">
-              <h2 className="text-3xl font-metal text-lime-300">Our Sound Journey</h2>
-              <p className="font-synth text-lime-100 leading-relaxed">
-                Formed in late 2019, we've cultivated a unique sound that seamlessly merges 
-                genres. From Rock and Pop to Native folk and Electronic layers, our music 
-                tells stories that bridge ancient traditions with modern expression.
+              <h2 className="text-3xl md:text-4xl font-origin text-[#ff4a4a]">About Us</h2>
+              <p className="text-lg font-origin text-gray-300 leading-relaxed">
+                Mysore Xpress, formed in 2019, is a modern fusion rock band from the heritage city 
+                of Mysore. We blend traditional Carnatic elements with contemporary rock, creating 
+                a unique sound that bridges cultures and generations.
               </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h4 className="font-metal text-lime-400 mb-2">Genres</h4>
-                  <p className="text-lime-100 font-synth">Rock • Pop • Folk</p>
-                </div>
-                <div>
-                  <h4 className="font-metal text-lime-400 mb-2">Base</h4>
-                  <p className="text-lime-100 font-synth">Mysore, Karnataka</p>
-                </div>
-              </div>
+              <Link href="/about">
+                <button className="bg-black hover:bg-gray-900 text-[#ff4a4a] px-6 py-3 
+                  rounded-full transform hover:scale-105 transition-all duration-200 
+                  font-bold font-origin flex items-center space-x-2 border border-[#ff4a4a]">
+                  <ArrowRight className="w-5 h-5" />
+                  <span>Learn More</span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Discography Section */}
-      <section className="py-20 animate-section">
+      {/* Music Section */}
+      <section className="py-24 bg-gray-900/30 animate-section">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1 space-y-6">
-              <h2 className="text-3xl font-metal text-lime-300">Our Music</h2>
-              <p className="font-synth text-lime-100 leading-relaxed">
-                Our debut EP "Made In Mysore" marked the beginning of our recorded journey. 
-                Since then, we've released multiple singles and covers, each showcasing our 
-                evolving sound and artistic vision.
+              <h2 className="text-3xl md:text-4xl font-origin text-[#ff4a4a]">Listen to Our Music</h2>
+              <p className="text-lg font-origin text-gray-300 leading-relaxed">
+                From our debut EP "Made In Mysore" to our latest releases, experience our 
+                musical journey across various streaming platforms. Each track tells a story 
+                of cultural fusion and musical exploration.
               </p>
               <Link href="/music">
-                <button className="bg-lime-500 hover:bg-lime-600 text-emerald-950 px-6 py-3 
+                <button className="bg-black hover:bg-gray-900 text-[#ff4a4a] px-6 py-3 
                   rounded-full transform hover:scale-105 transition-all duration-200 
-                  font-bold font-synth flex items-center space-x-2">
-                  <Play className="w-5 h-5" />
-                  <span>Listen to Our Music</span>
+                  font-bold font-origin flex items-center space-x-2 border border-[#ff4a4a]">
+                  <Music className="w-5 h-5" />
+                  <span>Explore Our Music</span>
                 </button>
               </Link>
             </div>
             <div className="order-1 md:order-2">
               <div className="relative group">
-                <div className="absolute inset-0 rounded-full bg-lime-500/20 transform 
+                <div className="absolute inset-0 rounded-full bg-[#ff4a4a]/20 transform 
                   scale-90 group-hover:scale-100 transition-transform duration-500"></div>
                 <img 
-                  src="/api/placeholder/500/500"
+                  src="/images/mxp5.jpg"
                   alt="Album artwork"
-                  className="rounded-full shadow-2xl relative z-10"
+                  className="rounded-full shadow-2xl relative z-10 animate-spin-slow"
                 />
               </div>
             </div>
@@ -128,38 +136,28 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-20 bg-emerald-900/30 animate-section">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-metal text-lime-300 mb-6">Ready to Experience More?</h2>
-            <p className="font-synth text-lime-100 mb-8 leading-relaxed">
-              Dive deeper into our musical world. Listen to our tracks, learn about our journey,
-              or get in touch for collaborations and bookings.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/about">
-                <button className="bg-emerald-800 hover:bg-emerald-700 text-lime-100 px-6 py-3 
-                  rounded-full transform hover:scale-105 transition-all duration-200 
-                  font-bold font-synth flex items-center space-x-2">
-                  <ArrowRight className="w-5 h-5" />
-                  <span>Learn More</span>
-                </button>
-              </Link>
-              <Link href="/contact">
-                <button className="bg-lime-500 hover:bg-lime-600 text-emerald-950 px-6 py-3 
-                  rounded-full transform hover:scale-105 transition-all duration-200 
-                  font-bold font-synth flex items-center space-x-2">
-                  <Music className="w-5 h-5" />
-                  <span>Contact Us</span>
-                </button>
-              </Link>
-            </div>
+      {/* Connect Section */}
+      <section className="py-24 animate-section">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-origin text-[#ff4a4a] mb-6">Connect With Us</h2>
+          <p className="text-lg font-origin text-gray-300 mb-12 max-w-2xl mx-auto">
+            Whether you're interested in bookings, collaborations, or just want to say hello,
+            we'd love to hear from you. Let's create something amazing together.
+          </p>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Link href="/contact">
+              <button className="bg-black hover:bg-gray-900 text-[#ff4a4a] px-6 py-3 
+                rounded-full transform hover:scale-105 transition-all duration-200 
+                font-bold font-origin flex items-center space-x-2 border border-[#ff4a4a]">
+                <Phone className="w-5 h-5" />
+                <span>Get in Touch</span>
+              </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      <FooterPlayer />
+      <Footer />
       <Floater />
       <VideoPlayer />
     </div>

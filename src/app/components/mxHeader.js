@@ -39,19 +39,19 @@ const Header = () => {
 
   return (
     <>
-      <style>
+      {/* <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
           @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
           
-          .font-metal { font-family: 'Metal Mania', cursive; }
-          .font-synth { font-family: 'Audiowide', cursive; }
+          .font-origin { font-family: 'Metal Mania', cursive; }
+          .font-origin { font-family: 'Audiowide', cursive; }
         `}
-      </style>
+      </style> */}
       <header className="fixed w-full z-50">
         {/* Main Header */}
         <div
-          className={`w-full transition-all duration-300 bg-emerald-950/95`}
+          className={`w-full transition-all duration-300 bg-black/90 backdrop-blur-sm`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16 md:h-20">
@@ -74,21 +74,21 @@ const Header = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-emerald-200 hover:text-lime-400 font-synth text-sm 
+                    className="text-gray-200 hover:text-[#ff4a4a] font-origin text-sm 
                     transition-colors relative group"
                   >
                     {link.name}
                     <span
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-lime-400 
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff4a4a] 
                     transition-all group-hover:w-full"
                     ></span>
                   </a>
                 ))}
                 <a href="/music">
                   <button
-                    className="bg-lime-500 hover:bg-lime-600 text-emerald-950 
-                  px-4 py-2 rounded-full font-synth text-sm font-bold 
-                  transition-all hover:scale-105 flex items-center space-x-2"
+                    className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white font-medium
+                  px-4 py-2 rounded-full font-origin text-sm font-bold drop-shadow-md
+                  transition-all hover:scale-105 flex items-center space-x-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]"
                   >
                     <Music className="w-4 h-4" />
                     <span>Listen Now</span>
@@ -98,7 +98,7 @@ const Header = () => {
 
               {/* Mobile Menu Button */}
               <button
-                className="md:hidden text-lime-400 hover:text-lime-500 transition-colors z-50"
+                className="md:hidden text-[#ff4a4a] hover:text-[#ff6b6b] transition-colors z-50"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 {isMobileMenuOpen ? (
@@ -113,7 +113,7 @@ const Header = () => {
 
         {/* Mobile Menu Overlay */}
         <div
-          className={`fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300 md:hidden
+          className={`fixed inset-0 bg-black/90 backdrop-blur-sm transition-opacity duration-300 md:hidden
           ${
             isMobileMenuOpen
               ? "opacity-100 pointer-events-auto"
@@ -128,22 +128,22 @@ const Header = () => {
           ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
           style={{ zIndex: 45 }}
         >
-          <div className="h-full bg-emerald-950/90 backdrop-blur-lg">
+          <div className="h-full bg-black/95 backdrop-blur-lg">
             <nav className="flex flex-col items-center justify-center h-full space-y-8 p-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-emerald-200 hover:text-lime-400 font-synth text-xl transition-colors"
+                  className="text-gray-200 hover:text-[#ff4a4a] font-origin text-xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
               <button
-                className="bg-lime-500 hover:bg-lime-600 text-emerald-950 
-                px-6 py-3 rounded-full font-synth font-bold 
-                transition-all hover:scale-105 flex items-center space-x-2"
+                className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white font-medium
+                px-6 py-3 rounded-full font-origin font-bold drop-shadow-md
+                transition-all hover:scale-105 flex items-center space-x-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Music className="w-5 h-5" />

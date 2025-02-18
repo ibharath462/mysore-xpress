@@ -12,8 +12,8 @@ const MusicFloater = () => {
     {
       name: 'Spotify',
       icon: <Music className="w-5 h-5" />,
-      color: 'bg-green-500',
-      hoverColor: 'hover:bg-green-600',
+      color: 'bg-emerald-500',
+      hoverColor: 'hover:bg-emerald-600',
       url: 'https://open.spotify.com/artist/3z6Qc4vYphJb18Rr0jGHuC'
     },
     {
@@ -48,8 +48,8 @@ const MusicFloater = () => {
       {/* Minimize Button */}
       <button
         onClick={() => setIsMinimized(!isMinimized)}
-        className="absolute -top-4 -left-4 bg-emerald-900 text-lime-400 rounded-full p-1
-          hover:bg-emerald-800 transition-colors z-10"
+        className="absolute -top-4 -left-4 bg-white text-[#ff4a4a] rounded-full p-1
+          hover:bg-gray-900 transition-colors z-10 border border-[#ff4a4a]/20"
       >
         {isMinimized ? (
           <Play className="w-4 h-4" />
@@ -61,8 +61,8 @@ const MusicFloater = () => {
       {/* Main Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`relative bg-emerald-900 text-lime-400 rounded-full p-4 shadow-lg
-          hover:bg-emerald-800 transition-all duration-300 ${
+        className={`relative bg-white text-[#ff4a4a] rounded-full p-4 shadow-lg
+          hover:bg-white transition-all duration-300 border border-[#ff4a4a]/20 ${
             isOpen ? 'rotate-180' : ''
           }`}
       >
@@ -71,18 +71,18 @@ const MusicFloater = () => {
         ) : (
           <Music2 className="w-6 h-6" />
         )}
-        <div className="absolute inset-0 bg-lime-400 rounded-full animate-ping opacity-20"></div>
+        <div className="absolute inset-0 bg-[#ff4a4a] rounded-full animate-ping opacity-20"></div>
       </button>
 
       {/* Platform Selection Menu */}
       <div className={`absolute bottom-full right-0 mb-4 transition-all duration-300 ${
         isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}>
-        <div className="bg-emerald-900/95 backdrop-blur-md rounded-lg p-4 shadow-xl
-          border border-lime-400/20">
+        <div className="bg-white/95 backdrop-blur-md rounded-lg p-4 shadow-xl
+          border border-[#ff4a4a]/20">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-lime-400 font-synth text-sm">Listen On</span>
-            <Disc className="w-4 h-4 text-lime-400 animate-spin-slow" />
+            <span className="text-[#ff4a4a] font-origin text-sm">Listen On</span>
+            <Disc className="w-4 h-4 text-[#ff4a4a] animate-spin-slow" />
           </div>
           
           <div className="space-y-2">
@@ -92,7 +92,7 @@ const MusicFloater = () => {
                 href={platform.url}
                 className={`flex items-center space-x-3 p-2 rounded-lg 
                   ${platform.color} ${platform.hoverColor} transition-colors
-                  text-white font-synth text-sm group`}
+                  text-white font-origin text-sm group`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -105,7 +105,7 @@ const MusicFloater = () => {
           </div>
 
           {/* Now Playing Preview */}
-          <div className="mt-4 pt-3 border-t border-lime-400/20">
+          <div className="mt-4 pt-3 border-t border-[#ff4a4a]/20">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <img 
@@ -113,15 +113,15 @@ const MusicFloater = () => {
                   alt="Album art" 
                   className="w-10 h-10 rounded"
                 />
-                <div className="absolute inset-0 bg-black/50 rounded flex items-center justify-center">
-                  <Play className="w-4 h-4 text-white" />
+                <div className="absolute inset-0 bg-white/50 rounded flex items-center justify-center">
+                  <Play className="w-4 h-4 text-[#ff4a4a]" />
                 </div>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-lime-400 font-synth text-xs truncate">
+                <p className="text-[#ff4a4a] font-origin text-xs truncate">
                   Mysore Masala Metal
                 </p>
-                <p className="text-emerald-200 text-xs truncate">
+                <p className="text-gray-400 text-xs truncate">
                   Latest Album
                 </p>
               </div>
