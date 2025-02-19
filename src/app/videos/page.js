@@ -217,7 +217,7 @@ const VideosPage = () => {
 
       <Footer />
       <Floater />
-      <VideoPlayer />
+      {/* <VideoPlayer /> */}
     </div>
   );
 };

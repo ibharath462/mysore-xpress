@@ -157,7 +157,7 @@ const MusicPage = () => {
 
       <Footer />
       <Floater />
-      <VideoPlayer />
+      {/* <VideoPlayer /> */}
 
       {/* Animated Background Notes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

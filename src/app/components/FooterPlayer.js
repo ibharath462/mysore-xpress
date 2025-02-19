@@ -208,7 +208,7 @@ const FooterWithPlayer = () => {
             © 2025 mysoreXPress. All rights reserved.
           </p>
           <p className="text-center text-xs sm:text-sm mt-2">
-            Made with 🎸🥁🤘🪈 in Mysore, India
+            Made with  🎸🥁🤘🪈  from Mysore, India
           </p>
         </div>
       </footer>

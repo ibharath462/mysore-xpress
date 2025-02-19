@@ -109,7 +109,7 @@ const MusicFloater = () => {
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <img 
-                  src="/api/placeholder/40/40" 
+                  src="/images/mxp5.jpg" 
                   alt="Album art" 
                   className="w-10 h-10 rounded"
                 />

@@ -227,7 +227,7 @@ const HomePage = () => {
 
       <Footer />
       <Floater />
-      <VideoPlayer />
+      {/* {/* <VideoPlayer /> */} */}
     </div>
   );
 };

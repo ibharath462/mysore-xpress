@@ -322,7 +322,7 @@ const FunkyGallery = () => {
       </section>
       <FooterPlayer />
       <Floater />
-      <VideoPlayer />
+      {/* <VideoPlayer /> */}
     </>
   );
 };

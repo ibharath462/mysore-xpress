@@ -1,22 +1,74 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from "react";
-import { X, Maximize2, Minimize2, Video } from "lucide-react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
+import { X, Maximize2, Minimize2, Video, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 const PIPVideoPlayer = () => {
+  // Initialize with default values
   const [isVisible, setIsVisible] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  const videoRef = useRef(null);
   const dragRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
-  // Handle drag start - now supports both mouse and touch events
+  // Set isClient to true once component mounts
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Load saved state from localStorage after component mounts
+  useEffect(() => {
+    const savedVisible = localStorage.getItem('pipVisible') === 'true';
+    const savedMinimized = localStorage.getItem('pipMinimized') === 'true';
+    const savedPosition = localStorage.getItem('pipPosition');
+    
+    setIsVisible(savedVisible);
+    setIsMinimized(savedMinimized);
+    if (savedPosition) {
+      setPosition(JSON.parse(savedPosition));
+    }
+  }, []);
+
+  // Save state changes to localStorage
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem('pipVisible', isVisible);
+      localStorage.setItem('pipMinimized', isMinimized);
+      localStorage.setItem('pipPosition', JSON.stringify(position));
+    }
+  }, [isVisible, isMinimized, position, isClient]);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (!isClient) return;
+      
+      const maxX = window.innerWidth - (isMinimized ? 320 : 640);
+      const maxY = window.innerHeight - (isMinimized ? 180 : 360);
+      
+      setPosition(prev => ({
+        x: Math.min(prev.x, maxX),
+        y: Math.min(prev.y, maxY)
+      }));
+    };
+
+    if (isClient) {
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [isMinimized, isClient]);
+
+  // Handle drag start
   const handleDragStart = useCallback((e) => {
     if (!isMinimized) return;
     setIsDragging(true);
     
-    // Handle both mouse and touch events
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     
@@ -26,18 +78,16 @@ const PIPVideoPlayer = () => {
     });
   }, [isMinimized, position]);
 
-  // Handle drag - now supports both mouse and touch events
+  // Handle drag
   const handleDrag = useCallback((e) => {
-    if (!isDragging) return;
+    if (!isDragging || !isClient) return;
 
-    // Handle both mouse and touch events
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
     const newX = clientX - dragStart.x;
     const newY = clientY - dragStart.y;
 
-    // Keep within viewport bounds
     const maxX = window.innerWidth - (isMinimized ? 320 : 640);
     const maxY = window.innerHeight - (isMinimized ? 180 : 360);
 
@@ -46,46 +96,65 @@ const PIPVideoPlayer = () => {
       y: Math.min(Math.max(0, newY), maxY),
     });
     
-    // Prevent default only for mouse events to maintain smooth touch scrolling
     if (!e.touches) {
       e.preventDefault();
     }
-  }, [isDragging, dragStart, isMinimized]);
+  }, [isDragging, dragStart, isMinimized, isClient]);
 
-  // Handle drag end
   const handleDragEnd = useCallback(() => {
     setIsDragging(false);
   }, []);
 
-  // Add event listeners for drag with passive touch events
-  React.useEffect(() => {
+  // Add event listeners
+  useEffect(() => {
     const element = dragRef.current;
-    if (!element) return;
+    if (!element || !isClient) return;
 
-    // Mouse events
     element.addEventListener("mousedown", handleDragStart);
     document.addEventListener("mousemove", handleDrag);
     document.addEventListener("mouseup", handleDragEnd);
-
-    // Touch events - with passive option
     element.addEventListener("touchstart", handleDragStart, { passive: true });
     document.addEventListener("touchmove", handleDrag, { passive: true });
     document.addEventListener("touchend", handleDragEnd, { passive: true });
 
     return () => {
-      // Cleanup mouse events
       element.removeEventListener("mousedown", handleDragStart);
       document.removeEventListener("mousemove", handleDrag);
       document.removeEventListener("mouseup", handleDragEnd);
-
-      // Cleanup touch events
       element.removeEventListener("touchstart", handleDragStart);
       document.removeEventListener("touchmove", handleDrag);
       document.removeEventListener("touchend", handleDragEnd);
     };
-  }, [handleDragStart, handleDrag, handleDragEnd]);
+  }, [handleDragStart, handleDrag, handleDragEnd, isClient]);
 
   const videoSize = isMinimized ? "w-80 h-45" : "w-full md:w-[640px] h-[360px]";
+  
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      } else {
+        videoRef.current.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      if (isMuted) {
+        videoRef.current.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+      } else {
+        videoRef.current.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+      }
+      setIsMuted(!isMuted);
+    }
+  };
+
+  // If not client-side yet, return null or a loading state
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <>
@@ -123,6 +192,26 @@ const PIPVideoPlayer = () => {
               </h3>
               <div className="flex items-center space-x-2">
                 <button
+                  onClick={togglePlay}
+                  className="text-white hover:text-red-600 transition-colors"
+                >
+                  {isPlaying ? (
+                    <Pause className="w-4 h-4" />
+                  ) : (
+                    <Play className="w-4 h-4" />
+                  )}
+                </button>
+                <button
+                  onClick={toggleMute}
+                  className="text-white hover:text-red-600 transition-colors"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-4 h-4" />
+                  ) : (
+                    <Volume2 className="w-4 h-4" />
+                  )}
+                </button>
+                <button
                   onClick={() => setIsMinimized(!isMinimized)}
                   className="text-white hover:text-red-600 transition-colors"
                 >
@@ -144,7 +233,8 @@ const PIPVideoPlayer = () => {
             {/* Video Container */}
             <div className={`relative ${videoSize}`}>
               <iframe
-                src="https://www.youtube.com/embed/2gCqPjVcwk4?autoplay=0"
+                ref={videoRef}
+                src="https://www.youtube.com/embed/2gCqPjVcwk4?enablejsapi=1&origin=http://localhost:3000"
                 title="mysoreXPress Video"
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
