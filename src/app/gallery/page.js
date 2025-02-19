@@ -22,7 +22,7 @@ const FunkyGallery = () => {
   const images = Array.from({ length: 19 }, (_, i) => ({
     id: i + 1,
     compressedSrc: `/images/compressed/mxp${i + 1}.jpg`,
-    fullSrc: `/images/mxp${i + 1}.jpg`,
+    fullSrc: `/images/compressed/mxp${i + 1}.jpg`,
     alt: `mysoreXPress performance ${i + 1}`,
     category: i % 3 === 0 ? 'concert' : i % 3 === 1 ? 'backstage' : 'studio'
   }));
