@@ -140,15 +140,17 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <button
-                className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white font-medium
+              <a href="/music">
+                <button
+                  className="bg-[#ff4a4a] hover:bg-[#ff6b6b] text-white font-medium
                 px-6 py-3 rounded-full font-origin font-bold drop-shadow-md
                 transition-all hover:scale-105 flex items-center space-x-2 [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Music className="w-5 h-5" />
-                <span>Listen Now</span>
-              </button>
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Music className="w-5 h-5" />
+                  <span>Listen Now</span>
+                </button>
+              </a>
             </nav>
           </div>
         </div>

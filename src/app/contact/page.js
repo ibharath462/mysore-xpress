@@ -63,7 +63,7 @@ const ContactPage = () => {
           <div className="text-center">
             <Disc className="w-16 h-16 mx-auto mb-4 text-[#ff4a4a] animate-spin-slow" />
             <h1 className="text-5xl md:text-7xl font-origin text-[#ff4a4a] mb-4 uppercase tracking-wide">
-              Connect With Us
+              Contact Us
             </h1>
           </div>
         </div>

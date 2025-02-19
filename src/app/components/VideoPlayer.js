@@ -92,8 +92,8 @@ const PIPVideoPlayer = () => {
       {/* Trigger Button */}
       <button
         onClick={() => setIsVisible(true)}
-        className="fixed bottom-6 left-6 z-40 bg-black text-red-600 p-3 rounded-full 
-          hover:bg-gray-900 transition-all duration-300 border border-red-600 
+        className="fixed bottom-6 left-6 z-40 bg-white text-red-600 p-3 rounded-full 
+          hover:bg-white transition-all duration-300 border border-red-600 
           shadow-lg group"
       >
         <Video className="w-6 h-6 group-hover:scale-110 transition-transform" />
@@ -124,7 +124,7 @@ const PIPVideoPlayer = () => {
               <div className="flex items-center space-x-2">
                 <button
                   onClick={() => setIsMinimized(!isMinimized)}
-                  className="text-gray-400 hover:text-red-600 transition-colors"
+                  className="text-white hover:text-red-600 transition-colors"
                 >
                   {isMinimized ? (
                     <Maximize2 className="w-4 h-4" />
@@ -134,7 +134,7 @@ const PIPVideoPlayer = () => {
                 </button>
                 <button
                   onClick={() => setIsVisible(false)}
-                  className="text-gray-400 hover:text-red-600 transition-colors"
+                  className="text-white hover:text-red-600 transition-colors"
                 >
                   <X className="w-4 h-4" />
                 </button>
