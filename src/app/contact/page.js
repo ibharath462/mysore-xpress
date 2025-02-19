@@ -3,9 +3,10 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mail, Phone, Disc, ArrowRight, Instagram, Youtube, Music } from "lucide-react";
+import { Mail, Phone, Disc, ArrowRight, Instagram, Youtube, Music, Headphones } from "lucide-react";
 
 import Header from "../components/mxHeader";
+import Footer from "../components/FooterPlayer";
 import Floater from "../components/Floater";
 import VideoPlayer from "../components/VideoPlayer";
 
@@ -170,6 +171,15 @@ const ContactPage = () => {
               <Music className="w-8 h-8 text-[#ff4a4a] mb-2 group-hover:scale-110 transition-transform" />
               <span className="text-gray-400 font-origin text-sm uppercase tracking-wide">Spotify</span>
             </a>
+            <a
+              href="https://music.apple.com/in/artist/mysore-xpress/1501098656"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center"
+            >
+              <Headphones className="w-8 h-8 text-[#ff4a4a] mb-2 group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 font-origin text-sm uppercase tracking-wide">Apple Music</span>
+            </a>
           </div>
         </div>
       </div>
@@ -186,7 +196,7 @@ const ContactPage = () => {
           ♩
         </div>
       </div>
-
+      <Footer />
       <Floater />
       <VideoPlayer />
     </div>

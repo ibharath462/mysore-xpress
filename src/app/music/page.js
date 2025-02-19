@@ -7,6 +7,7 @@ import { Music, Disc, Play, Volume2, Youtube, Radio } from "lucide-react";
 
 import Header from "../components/mxHeader";
 import Floater from "../components/Floater";
+import Footer from "../components/FooterPlayer";
 import VideoPlayer from "../components/VideoPlayer";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -154,6 +155,7 @@ const MusicPage = () => {
         </div>
       </div>
 
+      <Footer />
       <Floater />
       <VideoPlayer />
 

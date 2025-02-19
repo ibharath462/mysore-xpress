@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 
 import Header from "../components/mxHeader";
 import Floater from "../components/Floater";
+import Footer from "../components/FooterPlayer";
 import VideoPlayer from "../components/VideoPlayer";
 
 const VideosPage = () => {
@@ -252,6 +253,7 @@ const VideosPage = () => {
         </div>
       </div>
 
+      <Footer />
       <Floater />
       <VideoPlayer />
 

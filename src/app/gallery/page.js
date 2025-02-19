@@ -293,6 +293,7 @@ const FunkyGallery = () => {
         )}
       </div>
     </section>
+    <FooterPlayer />
     <Floater />
     <VideoPlayer />
     </>
