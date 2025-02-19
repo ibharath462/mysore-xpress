@@ -149,7 +149,7 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <FooterPlayer />
+        {/* <FooterPlayer /> */}
         <Floater />
         <VideoPlayer />
 
